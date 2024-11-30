@@ -1,5 +1,6 @@
 import openai
 import os
+import subprocess  # Importing subprocess for running the generated file
 
 # Retrieve the API Key from environment variables
 api_key = os.getenv("OPENAI_API_KEY")
@@ -25,9 +26,24 @@ def generate_code(prompt):
 
 # Main function
 if __name__ == "__main__":
+    # Prompt to generate Python code
     prompt = prompt = "Write a Python program that checks if a number is prime. The program must be clean, without Markdown formatting, comments, or examples. The code should be ready to run as is."
+    
+    # Generate code using OpenAI API
     generated_code = generate_code(prompt)
-    print(generated_code)
+    # print(generated_code)
 
+    # Save the generated code to a file named 'generatedcode.py'
     with open("generatedcode.py", "w") as file:
         file.write(generated_code)
+
+    # Run the generated file using subprocess
+    try:
+        result = subprocess.run(["python", "generatedcode.py"], text=True, capture_output=True, check=True)
+        print("\nOutput of generated code:")
+        print(result.stdout)
+    except subprocess.CalledProcessError as e:
+        print("\nAn error occurred while running the generated code:")
+        print(e.stderr)
+    except subprocess.TimeoutExpired:
+        print("\nThe generated code took too long to run and was terminated.")
