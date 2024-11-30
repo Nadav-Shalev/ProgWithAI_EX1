@@ -1,10 +1,8 @@
-import openai
-from colorama import Fore, Style
-from tqdm import tqdm
+import os
 
-# הודעה ראשונית
-print(Fore.GREEN + "All libraries imported successfully!" + Style.RESET_ALL)
+api_key = os.getenv("OPENAI_API_KEY")
 
-# סימולציה של סרגל התקדמות
-for i in tqdm(range(10), desc="Testing tqdm"):
-    pass
+if api_key:
+    print("API Key retrieved successfully!")
+else:
+    print("API Key not found. Please check your environment variables.")
