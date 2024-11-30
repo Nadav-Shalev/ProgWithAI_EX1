@@ -17,7 +17,7 @@ def generate_code(prompt):
             model="gpt-4o-mini",  # Use the chat model
             messages=[{"role": "user", "content": prompt}],  # Message format
             max_tokens=200,  # Increase token limit for complete code
-            temperature=0.2  # Reduce creativity for more structured code
+            temperature=0.5  # Reduce creativity for more structured code
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
@@ -39,7 +39,6 @@ def clean_code(generated_code):
 # Main function
 if __name__ == "__main__":
     prompt = "Write a clean Python program that checks if a number is prime. Ensure there are no repetitions or redundant code. Output only the program code without examples or comments."
-    print("Generating code...")
     generated_code = generate_code(prompt)
     cleaned_code = clean_code(generated_code)
-    print("Generated Code:\n", cleaned_code)
+    print(cleaned_code)
