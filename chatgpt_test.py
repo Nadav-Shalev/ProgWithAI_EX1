@@ -1,4 +1,4 @@
-from openai import OpenAI
+import openai
 import os
 
 # Retrieve the API Key from environment variables
@@ -7,19 +7,19 @@ api_key = os.getenv("OPENAI_API_KEY")
 if api_key is None:
     raise Exception("OPENAI_API_KEY is not set in the environment variables!")
 
-# Create an OpenAI client object
-client = OpenAI(api_key=api_key)
+# Set the API Key for the OpenAI module
+openai.api_key = api_key
 
-# Function to send a request to ChatGPT
+# Function to send a request to the chat completion endpoint
 def generate_code(prompt):
     try:
-        response = client.ChatCompletion.create(
-            model="gpt-4o-mini",  # Model to use
-            messages=[{"role": "user", "content": prompt}],  # The prompt to send
-            max_tokens=200,  # Maximum length of the response
-            temperature=0.5  # Creativity level
+        response = openai.ChatCompletion.create(
+            model="gpt-4o-mini",  # Use the chat model
+            messages=[{"role": "user", "content": prompt}],  # Format required for chat models
+            max_tokens=200,  # Limit the length of the response
+            temperature=0.5  # Adjust creativity level
         )
-        return response["choices"][0]["message"]["content"]
+        return response.choices[0].message.content.strip()
     except Exception as e:
         return f"Error: {str(e)}"
 
