@@ -18,7 +18,7 @@ def generate_code(prompt):
             model="gpt-4o-mini",  # Use the chat model
             messages=[{"role": "user", "content": prompt}],  # Message format
             max_tokens=200,  # Increase token limit for complete code
-            temperature=0.5  # Reduce creativity for more structured code
+            temperature=0.1  # Reduce creativity for more structured code
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
@@ -27,7 +27,7 @@ def generate_code(prompt):
 # Main function
 if __name__ == "__main__":
     # Prompt to generate Python code
-    prompt = prompt = "Write a Python program that checks if a number is prime. The program must be clean, without Markdown formatting, comments, or examples. The code should be ready to run as is."
+    prompt = "Write a Python program that checks if a number is prime. The program must be clean, without Markdown formatting, comments, or examples. The code should be ready to run as is. Also please include running unit tests with asserts that check the logic of the program. Make sure to also check interesting edge cases. There should be 3-4 different unit tests and print feedback good/not"
     
     # Generate code using OpenAI API
     generated_code = generate_code(prompt)

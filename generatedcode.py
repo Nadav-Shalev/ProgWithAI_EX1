@@ -6,8 +6,15 @@ def is_prime(n):
             return False
     return True
 
-number = int(input("Enter a number: "))
-if is_prime(number):
-    print(f"{number} is a prime number.")
-else:
-    print(f"{number} is not a prime number.")
+def run_tests():
+    assert is_prime(2) == True
+    assert is_prime(3) == True
+    assert is_prime(4) == False
+    assert is_prime(29) == True
+    assert is_prime(1) == False
+    assert is_prime(-5) == False
+    assert is_prime(0) == False
+    assert is_prime(97) == True
+    print("All tests passed!")
+
+run_tests()
