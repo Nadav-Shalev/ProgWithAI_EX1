@@ -25,7 +25,7 @@ def generate_code(prompt):
 
 # Main function
 if __name__ == "__main__":
-    prompt = prompt = "Write a clean Python program that checks if a number is prime. Ensure the code has no syntax errors and outputs only valid Python code without examples or comments."
+    prompt = prompt = "Write a Python program that checks if a number is prime. The program must be clean, without Markdown formatting, comments, or examples. The code should be ready to run as is."
     generated_code = generate_code(prompt)
     print(generated_code)
 
