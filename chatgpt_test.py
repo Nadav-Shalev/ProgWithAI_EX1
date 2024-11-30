@@ -23,22 +23,8 @@ def generate_code(prompt):
     except Exception as e:
         return f"Error: {str(e)}"
 
-# Function to clean the generated code
-def clean_code(generated_code):
-    try:
-        # Remove duplicated lines
-        lines = generated_code.split("\n")
-        unique_lines = []
-        for line in lines:
-            if line.strip() not in unique_lines:
-                unique_lines.append(line.strip())
-        return "\n".join(unique_lines)
-    except Exception as e:
-        return f"Error while cleaning code: {str(e)}"
-
 # Main function
 if __name__ == "__main__":
     prompt = "Write a clean Python program that checks if a number is prime. Ensure there are no repetitions or redundant code. Output only the program code without examples or comments."
     generated_code = generate_code(prompt)
-    cleaned_code = clean_code(generated_code)
-    print(cleaned_code)
+    print(generated_code)
